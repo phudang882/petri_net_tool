@@ -25,7 +25,17 @@ class Petrinet:
         self.places.append(place)
 
     # function for adding arcs
-    def add_arc(self, arc):
+    # def add_arc(self, arc):
+    #     assert (type(arc)==Arc), "object is not of type Arc."
+    #     self.arcs.append(arc)
+
+    def add_arc(self, place1, place2, io):
+        arc = Arc(place1.name+"->"+place2.name)
+        arc.initialize(place1, place2, io)
+        if (io == "input") :
+            place2.add_arc(arc)
+        else :
+            place1.add_arc(arc)
         assert (type(arc)==Arc), "object is not of type Arc."
         self.arcs.append(arc)
 
